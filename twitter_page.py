@@ -1,12 +1,12 @@
+from cgitb import text
 import configparser
 import tweepy 
-import datetime
 
-def validate(date_text):
+# def validate(date_text):
 
-        datetime.datetime.strptime(date_text,'%Y-%m-%d')
-        print("True date")
-        return True
+#         datetime.datetime.strptime(date_text,'%Y-%m-%d')
+#         print("True date")
+#         return True
     
 
 config = configparser.ConfigParser()
@@ -21,6 +21,10 @@ auth = tweepy.OAuthHandler(api_key, api_key_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
+# tweepy.Cursor(api.search, q="#hashtag", count=5, include_entities=True)
+# if 'media' in public_tweets.entities:
+#     for image in  tweet.entities['media']:
+#         (do smthing with image['media_url'])
 public_tweets = api.home_timeline()
 
 # def options(argument):
@@ -35,11 +39,31 @@ public_tweets = api.home_timeline()
 
 # val = options(4)
 
-val = input("Enter a keyword: ")
+month = ['January','February','March','April','May','June','July','August','September','October','November','December']
+    
+    
+
+# val = input("Enter a keyword: ")
 
 for tweet in public_tweets: 
-    if val.casefold() in tweet.text:
-        if(validate(val)):
-            print(f"{tweet.user.name} said {tweet.text}")
-            print(tweet.user.name)
-            print(tweet.text)
+    # if val.casefold() in tweet.text:
+        for mon in month:
+            if mon in tweet.text:
+                res = tweet.text.index(mon)
+                lenm = len(mon)
+                spaceindex = res+lenm+1 # index of the space 
+                print(res)
+                print(spaceindex)
+                
+                print(f"{tweet.user.name} said {tweet.text}")
+                print(tweet.user.name)
+                val = tweet.text[spaceindex:]
+                print(mon)
+                print(val[:(val.index('.'))]) 
+                # if(tweet.text[spaceindex].isnumeric()):
+                #     # val = tweet.text[spaceindex]
+                #     print(tweet.text[tweet.text[spaceindex]:val.index(' ')])                    
+                #     print(f"Date{mon} {date_val}" )
+
+# for tweet in public_tweets: 
+#     print(tweet.text)

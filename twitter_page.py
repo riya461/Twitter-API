@@ -2,12 +2,7 @@
 import configparser
 import tweepy 
 import re
-# def validate(date_text):
 
-#         datetime.datetime.strptime(date_text,'%Y-%m-%d')
-#         print("True date")
-#         return True
-  
 def str_append(s, n,output):
     
     i = 0
@@ -43,14 +38,14 @@ def month_acess(mon,val):
                 if mon in tweet.text:
                     res = tweet.text.index(mon)
                     lenm = len(mon)
-                    spaceindex1 = res+lenm+1 # index of the space 
+                    spaceindex1 = res+lenm+1 
                     spaceindex2 = res
                     prival = ''
                    
                     if tweet.text[spaceindex1].isnumeric() :
                         
                         vale = tweet.text[spaceindex1:]
-                        # print(mon)
+                        
                        
                         for i in vale:
                             
@@ -86,10 +81,10 @@ def month_acess(mon,val):
                     print(" ")
 for i in month:                 
     month_acess(i,'') 
-    
+print(" ")
 value = input("The month to be searched for results: ") 
 month_acess(value,'')
-
+print(" ")
 key = input("a specific keyword: ")
 month_acess(value,key)
   
@@ -99,5 +94,3 @@ month_acess(value,key)
                         
                 
 
-# for tweet in public_tweets: 
-#     print(tweet.text)

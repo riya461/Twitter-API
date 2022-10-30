@@ -1,7 +1,7 @@
 
 import configparser
 import tweepy 
-
+import re
 # def validate(date_text):
 
 #         datetime.datetime.strptime(date_text,'%Y-%m-%d')
@@ -45,9 +45,8 @@ def month_acess(mon,val):
                     lenm = len(mon)
                     spaceindex1 = res+lenm+1 # index of the space 
                     spaceindex2 = res
-                    print(spaceindex2)
-                    print(tweet.text[spaceindex2-2])
                     prival = ''
+                   
                     if tweet.text[spaceindex1].isnumeric() :
                         
                         vale = tweet.text[spaceindex1:]
@@ -67,7 +66,7 @@ def month_acess(mon,val):
                     elif tweet.text[spaceindex2-2].isnumeric():
                         
                         prival = ''
-                        vale = tweet.text[spaceindex1:]
+                        vale = tweet.text[spaceindex2-2:]
                         # print(mon)
                        
                         for i in vale:

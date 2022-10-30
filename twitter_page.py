@@ -79,6 +79,9 @@ def month_acess(mon,val):
                     print("Tweet: ")
                     print(tweet.text)
                     print(" ")
+                    id_one = tweet._json['id']
+                    return id_one
+                    
 for i in month:                 
     month_acess(i,'') 
 print(" ")

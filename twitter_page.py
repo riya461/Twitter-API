@@ -74,7 +74,7 @@ def month_acess(mon,val):
                             
                         
                         
-                    print(f"Date {prival} {mon}")
+                    print(f"Date: {prival} {mon}")
                     print(f"User: {(tweet.user.name)}")
                     print("Tweet: ")
                     print(tweet.text)

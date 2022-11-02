@@ -1,7 +1,8 @@
 
+from ast import keyword
 import configparser
 import tweepy 
-import re
+
 
 def str_append(s, n,output):
     
@@ -28,20 +29,23 @@ public_tweets = api.home_timeline()
 
 
 month = ['January','February','March','April','May','June','July','August','September','October','November','December']
-    
+
+keywords = ['Tour','tour','tickets','hours']
+
     
 
-def month_acess(mon,val):
-    for tweet in public_tweets: 
-        if val.casefold() in tweet.text:
+def month_acess(mon):
             
                 if mon in tweet.text:
+                    
                     res = tweet.text.index(mon)
                     lenm = len(mon)
                     spaceindex1 = res+lenm+1 
+                    if(spaceindex1 > len(tweet.text)):
+                       spaceindex1 = len(tweet.text)-1
                     spaceindex2 = res
                     prival = ''
-                   
+                    
                     if tweet.text[spaceindex1].isnumeric() :
                         
                         vale = tweet.text[spaceindex1:]
@@ -62,7 +66,7 @@ def month_acess(mon,val):
                         
                         prival = ''
                         vale = tweet.text[spaceindex2-2:]
-                        # print(mon)
+                        print(mon)
                        
                         for i in vale:
                             
@@ -73,23 +77,27 @@ def month_acess(mon,val):
                                 break
                             
                         
-                        
-                    print(f"Date: {prival} {mon}")
+                    print(f"{mon}")
                     print(f"User: {(tweet.user.name)}")
                     print("Tweet: ")
                     print(tweet.text)
                     print(" ")
-                    id_one = tweet._json['id']
-                    return id_one
                     
-for i in month:                 
-    month_acess(i,'') 
+                    
+for tweet in public_tweets: 
+    # print(tweet.text)
+                 
+    for i in keywords:                 
+        month_acess(i) 
+        
+    for j in month:
+        month_acess(j)
+        
 print(" ")
 value = input("The month to be searched for results: ") 
-month_acess(value,'')
+month_acess(value)
 print(" ")
-key = input("a specific keyword: ")
-month_acess(value,key)
+
   
                     
                         
